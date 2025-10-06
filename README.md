@@ -19,3 +19,10 @@ Se configuraron todas las urls para que tenga un correcto funcionamiento el sist
 Se hizo una migracion con el comando python manage.py makemigrations y python manege.py migrate , para hacer funcionar todo el sistema de 
 usuarios, como la creacion de un CustomUsuario en el models.py para añadirle permisos custom.
 
+#usuarios de prueba si no borras la db y no haces migraciones denuevo
+username: prueba1
+pass: asdfgh123456
+
+susername: prueba2
+pass: asdfgh123456
+
