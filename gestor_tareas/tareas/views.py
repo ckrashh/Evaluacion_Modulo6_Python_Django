@@ -52,6 +52,7 @@ class AgegarTareaView(ProtectedTemplateView):
         if form.is_valid():
             nombre = form.cleaned_data['Titulo']
             descripcion = form.cleaned_data['Descripcion']
+            global tareas
             tareas.append({'Usurario': request.user.username, 'Titulo': nombre, 'Descripcion': descripcion})
             return redirect('index')
         
@@ -77,7 +78,6 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
             return redirect('login')
     else:
         form = CustomUserCreationForm()
