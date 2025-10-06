@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Index - Tareas {% endblock %}
+{% block content %}
+    <div class="text-center">
+        <h1 class="mt-5">Bienvenido al Gestor de Tareas</h1>
+        <p class="lead">Administra tus tareas de manera eficiente.</p>
+    </div>
+    <!-- ULTIMAS 3 TAREAS AGREGADAS -->
+    <div class="mt-4">
+        <h2>Últimas Tareas Agregadas</h2>
+        <div class="list-group">
+            {% for tarea in tareas|slice:"-3:" %}
+                <a href="{% url 'detalles_tarea' tarea.Titulo %}" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">{{ tarea.Titulo }}</h5>
+                    <p class="mb-1">{{ tarea.Descripcion|truncatewords:10 }}</p>
+                    <small>Por: {{ tarea.Usurario }}</small>
+                </a>
+            {% empty %}
+                <p class="text-muted">No hay tareas disponibles.</p>
+            {% endfor %}
+        </div>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        document.getElementById('footer').classList.add('fixed-bottom');
+    </script>
+{% endblock %}

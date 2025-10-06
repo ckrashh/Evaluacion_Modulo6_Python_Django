@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Agregar - Tareas {% endblock %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        document.getElementById('footer').classList.add('fixed-bottom');
+    </script>
+{% endblock %}

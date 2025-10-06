@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Lista - Tareas {% endblock %}
+{% block content %}
+<h1>Lista de Mis Tareas</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tarea in tareas %}
+        <tr>
+            <td>{{ tarea.Titulo }}</td>
+            <td>{{ tarea.Descripcion }}</td>
+            <td>
+                <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#successModal">Eliminar</button>
+            </td>
+        </tr>
+
+        <!-- Modal para mensaje de éxito -->
+        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Éxito</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="mensaje"> La tarea se ha eliminado correctamente.</p>
+            </div>
+            <div class="modal-footer">
+                <form id="eliminar-form" method="post" action="{% url 'eliminar_tarea_confirmar' tarea.Titulo %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Cerrar</button>
+                </form>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        {% empty %}
+        <tr>
+            <td colspan="3">No hay tareas disponibles.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock %}
+{% block extra_js %}
+    <script>
+        document.getElementById('footer').classList.add('fixed-bottom');
+    </script>
+{% endblock %}

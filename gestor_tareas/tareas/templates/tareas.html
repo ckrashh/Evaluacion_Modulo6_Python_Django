@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Lista - Tareas {% endblock %}
+{% block content %}
+<h1>Lista de Mis Tareas</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tarea in tareas %}
+        <tr>
+            <td>{{ tarea.Titulo }}</td>
+            <td>{{ tarea.Descripcion }}</td>
+            <td>
+                <a href="{% url 'detalles_tarea' tarea.Titulo %}" class="btn btn-info btn-sm">Ver Detalles</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No hay tareas disponibles.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        document.getElementById('footer').classList.add('fixed-bottom');
+    </script>
+{% endblock %}

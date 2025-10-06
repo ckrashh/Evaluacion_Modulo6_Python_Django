@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gestor Tareas{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'index' %}">Gestor Tareas</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'tareas' %}">Tareas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'agregar_tarea' %}">Agregar Tarea</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'eliminar_tarea' %}">eliminar Tarea</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'register' %}">Registrarse</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+       </div>
+    </nav>      
+    <main class="flex-grow-1">     
+        <div id="content" class="container mt-4" style="height: 100%;">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>  
+
+    <footer id="footer" class="bg-dark text-white text-center py-3 mt-auto" >
+        <div class="container">
+            <p>&copy; 2025 Recetas. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Script para ajustar el footer -->
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

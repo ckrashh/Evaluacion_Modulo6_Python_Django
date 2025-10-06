@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Detalles - Tareas {% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <h2>Detalles de la Tarea</h2>
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ tarea.Titulo }}</h5>
+                <p class="card-text">Descripcion: {{ tarea.Descripcion }}</p>
+                <p class="card-text"><small class="text-muted">Por: {{ tarea.Usurario }}</small></p>
+                <a href="{% url 'tareas' %}" class="btn btn-primary">Volver a la lista de tareas</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        document.getElementById('footer').classList.add('fixed-bottom');
+    </script>
+{% endblock %}
